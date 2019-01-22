@@ -11,7 +11,7 @@
 
 
 <body>
-  <%-- The navigation bar --%>
+  <%-- The navigation bar- 1st =  --%>
 	<ul>
 	  <li><a class="active" href="list">Book Listing</a></li>
     <li><a href="admin">Admin</a></li>

@@ -56,6 +56,7 @@ public class Module1_Task1_thru_4_IT {
 	    webClient.closeAllWindows();
 	  }
 
+	//These aren't really unit tests- they are just seeing if we are doing what they want
     @Test
     public void _task1() {
       String errorMsg = "Form with name=\"" + CART_FORM_NAME + "\" does not exist.";

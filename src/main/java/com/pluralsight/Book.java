@@ -6,6 +6,7 @@ public class Book {
 	String author;
 	float price;
 
+	//his is a constructor for book saying to set these 3 variables to these values right away
 	public Book(String title, String author, float price) {
 		this.title = title;
 		this.author = author;

@@ -1,7 +1,9 @@
 package com.pluralsight;
 
+//Lines 4- 12 are the class declaration of cartItem
 public class CartItem {
-    private Book book;
+	// bringing in the book class in the class declaration
+	private Book book;
     private int quantity;
 
     public CartItem(Book book, int quantity) {

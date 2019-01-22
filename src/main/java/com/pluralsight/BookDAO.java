@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+//Book DAO.java is just all of the methods and such related to the database
+//We import these packages so that we can use the methods in them and in their libraries
+// Java holds more of the backend stuff and the webapp section holds the front end jsp stuff
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +11,8 @@ import java.sql.Statement;
 
 import java.util.ArrayList;
 
+//These methods are public so they can be used when adding a book to the car
+// ex- maybe you cann insertBook when you add a book to the car
 public class BookDAO {
     private Connection jdbcConnection;
     public BookDAO(Connection connection)
@@ -25,11 +30,14 @@ public class BookDAO {
 
         ResultSet resultSet = statement.executeQuery();
 
+        // This is saying if the DB is connected and if there are more rows of data to get, don't throw a SQL exception
+        // if (resultSet.next() just means if there is a next row aka it returns true)
         if (resultSet.next()) {
             String title = resultSet.getString("title");
             String author = resultSet.getString("author");
             float price = resultSet.getFloat("price");
 
+            // Setting the retrieved data in a new book object
             book = new Book(id, title, author, price);
         }
 

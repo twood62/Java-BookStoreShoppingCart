@@ -44,7 +44,10 @@ public class CartController extends HttpServlet {
 			switch(action) {
 				case "/addcart":
 					 addToCart(request, response);
-           break;
+					 break;
+				case "/delete":
+					deleteFromCart(request, response);
+					break;
         default:
            break;
 			}
@@ -56,6 +59,7 @@ public class CartController extends HttpServlet {
 		response.sendRedirect("../ShoppingCart.jsp");
 	}
 
+	//the session variable is managing the shopping cart instead of the DB
   protected void addToCart(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
    HttpSession session = request.getSession();
@@ -65,9 +69,10 @@ public class CartController extends HttpServlet {
    int quantity = Integer.parseInt(quantityStr);
 
 	 // Get the book from the database
+   //This method returns a 
    Book existingBook = bookDAO.getBook(id);
 
-	 // Check if a ShoppingCart exists in the Session variable
+	 // Check if a ShoppingCart exists in the Session variable (built in object, really)
 	 // If not create one
    ShoppingCart shoppingCart = null;
    Object objCartBean = session.getAttribute("cart");
@@ -82,7 +87,30 @@ public class CartController extends HttpServlet {
 	 // Add this item and quantity to the ShoppingCart
    shoppingCart.addCartItem(existingBook, quantity);
   }
+  	
+  
+ //DELETE FROM CART
+//the session variable is managing the shopping cart instead of the DB
+  protected void deleteFromCart(HttpServletRequest request, HttpServletResponse response)
+		throws ServletException, IOException {
+   
+	  HttpSession session = request.getSession();
+	  int index = Integer.parseInt(request.getParameter("index"));
+	  // Check if a ShoppingCart exists in the Session variable (built in object, really)
+		 // If not create one
+	   ShoppingCart shoppingCart = null;
+	   Object objCartBean = session.getAttribute("cart");
 
+	   if(objCartBean!=null) {
+	    shoppingCart = (ShoppingCart) objCartBean ;
+	   } else {
+	    shoppingCart = new ShoppingCart();
+	    session.setAttribute("cart", shoppingCart);
+	   }
+
+	   shoppingCart.deleteCartItem(index);
+	  	
+  }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}

@@ -18,6 +18,16 @@ public class ShoppingCart {
    calculateOrderTotal();
  }
 
+ public void deleteCartItem(int index1) {
+	 try {
+	   cartItems.remove(index1);
+	   
+	 } catch (IndexOutOfBoundsException e) {
+		 e.printStackTrace();
+	 }
+	   //calculateOrderTotal();
+	 }
+ 
  public void addCartItem(CartItem cartItem) {
   cartItems.add(cartItem);
  }
