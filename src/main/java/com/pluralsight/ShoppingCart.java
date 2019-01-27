@@ -17,6 +17,10 @@ public class ShoppingCart {
    cartItems.add(cartItem);
    calculateOrderTotal();
  }
+ 
+ public void addCartItem(CartItem cartItem) {
+	   cartItems.add(cartItem);
+	 }
 
  public void deleteCartItem(int index1) {
 	 try {
@@ -28,8 +32,16 @@ public class ShoppingCart {
 	   //calculateOrderTotal();
 	 }
  
- public void addCartItem(CartItem cartItem) {
-  cartItems.add(cartItem);
+ public void updateCartItem(int index, int quantity) {
+	 
+	 try {
+	 CartItem cartItem = cartItems.get(index);
+	 
+	 cartItem.setQuantity(quantity);
+	 
+	 }	catch(IndexOutOfBoundsException e) {
+		 	e.printStackTrace();
+	 }
  }
 
  public CartItem getCartItem(int iItemIndex) {
